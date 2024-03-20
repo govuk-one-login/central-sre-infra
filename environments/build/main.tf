@@ -3,7 +3,7 @@ terraform {
   
   backend "s3" {
     bucket = "di-central-sre-build-tfstate"
-    key    = "central-sre-infra/s3-logging-bucket.tfstate"
+    key    = "central-sre-infra/build.tfstate"
     region = "eu-west-2"
   }
 
@@ -20,16 +20,25 @@ provider "aws" {
   region              = "eu-west-2"
 }
 
-module "main" {
-    source = "../../main"
-    product_id = var.product_id
-    artifact_version = var.artifact_version
-    object_lock_mode = var.object_lock_mode
-    log_retention_in_days = var.log_retention_in_days
-    deletion_policy = var.deletion_policy
-    update_replace_policy = var.update_replace_policy
-    product = var.product
-    system = var.system
-    environment = var.environment
-    owner = var.owner
+module "build" {
+  source = "../../terraform/build"
+  environment = local.environment
 }
+
+module "utilities" {
+  source = "../../terraform/utilities"
+  environment = local.environment
+}
+
+# module "main" {
+#     source = "../../main"
+#     product_id = "prod-uqstrdr2u5xoc"
+#     product_version = var.product_version
+#     system = var.system
+#     environment = var.environment
+# }
+
+
+# module "deployment" {
+#   source = "../../deployment"
+# }
