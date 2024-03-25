@@ -19,7 +19,7 @@ jobs:
       - name: Set up AWS credentails
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.SERVICE_CATALOG_GH_ACTIONS_ROLE_ARN }}
+          role-to-assume: ${{ secrets.SCAT_CENTRALISED_LOGGING_GH_ACTIONS_ROLE_ARN }}
           aws-region: eu-west-2
 
       - name: Set up Python 3.11
