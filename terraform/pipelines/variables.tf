@@ -34,7 +34,12 @@ variable "one_login_repository_name" {
 
 variable "artifact_source_bucket_arn" {
   type = string
-  description = "The arn of the source s3 bucket that "
+  description = "The arn of the source s3 bucket that contains the built artifacts."
   default = null
 }
-variable "artifact_source_bucket_event_trigger_role_arn" {default = null}
+
+variable "artifact_source_bucket_event_trigger_role_arn" {
+  type = string
+  description = "The arn of the source s3 bucket role that trigger the event."
+  default = null
+}
