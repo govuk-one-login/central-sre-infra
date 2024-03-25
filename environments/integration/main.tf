@@ -24,3 +24,13 @@ module "utilities" {
   source = "../../terraform/utilities"
   environment = local.environment
 }
+
+module "pipelines" {
+    source = "../../terraform/pipelines"
+    environment = "integration"
+    include_promotion = "No"
+    signing_profile_arn = "arn:aws:signer:eu-west-2:891376909120:/signing-profiles/SigningProfile_jIC143lYZbgR"
+    signing_profile_version_arn = "arn:aws:signer:eu-west-2:891376909120:/signing-profiles/SigningProfile_jIC143lYZbgR/OEjYWMQ1LP"
+    artifact_source_bucket_arn = "arn:aws:s3:::centralised-logging-pipeli-artifactpromotionbucket-vffowgeuylal"
+    artifact_source_bucket_event_trigger_role_arn = "arn:aws:iam::025394038831:role/PL-centralised-logging-pipeline-PromoTrigRole-0a895a65026f"
+}

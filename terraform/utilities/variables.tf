@@ -6,12 +6,3 @@ variable "environment" {
     error_message = "environemnt should be one of `build`, `dev`, `staging`, `integration` or `production`"
   }
 }
-
-# variable "product_id" {
-  
-# }
-# variable "product_version" {
-#   type = string
-# }
-# variable "system" {}
-# variable "environment" {}
