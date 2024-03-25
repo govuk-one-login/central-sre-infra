@@ -30,15 +30,10 @@ module "utilities" {
   environment = local.environment
 }
 
-# module "main" {
-#     source = "../../main"
-#     product_id = "prod-uqstrdr2u5xoc"
-#     product_version = var.product_version
-#     system = var.system
-#     environment = var.environment
-# }
-
-
-# module "deployment" {
-#   source = "../../deployment"
-# }
+module "pipelines" {
+    source = "../../terraform/pipelines"
+    allowed_accounts = "025394038831"
+    environment = "build"
+    include_promotion = "Yes"
+    one_login_repository_name = "central-sre-infra"
+}

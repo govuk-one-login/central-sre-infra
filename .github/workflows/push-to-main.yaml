@@ -1,0 +1,39 @@
+name: Push To Main - Integration
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  lint-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up AWS credentails
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.SCAT_CENTRALISED_LOGGING_GH_ACTIONS_ROLE_ARN }}
+          aws-region: eu-west-2
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up SAM cli
+        uses: aws-actions/setup-sam@v2
+      
+      - name: Deploy via the workflow.
+        uses: govuk-one-login/devplatform-upload-action@v3.5
+        with:
+            artifact-bucket-name: ${{ secrets.SCAT_CENTRALISED_LOGGING_ARTIFACT_BUCKET_NAME }} 
+            signing-profile-name: ${{ secrets.SCAT_CENTRALISED_LOGGING_SIGNING_PROFILE_NAME }}
+            working-directory: ./cloudformation
+            template-file: centralised-logging.yaml
