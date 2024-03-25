@@ -29,11 +29,12 @@ jobs:
 
       - name: Set up SAM cli
         uses: aws-actions/setup-sam@v2
-
-      - name: Deploy via the workflow.
-        uses: govuk-one-login/devplatform-upload-action@v3.5
-        with:
-            artifact-bucket-name: ${{ secrets.SERVICE_CATALOG_artifact_BUCKET_NAME }} 
-            signing-profile-name: ${{ secrets.SERVICE_CATALOG_SIGNING_PROFILE_NAME }}
-            working-directory: ./cloudformation
-            template-file: centralised-logging.yaml
+      
+      # TODO put me back in the game coach!
+      # - name: Deploy via the workflow.
+      #   uses: govuk-one-login/devplatform-upload-action@v3.5
+      #   with:
+      #       artifact-bucket-name: ${{ secrets.SERVICE_CATALOG_artifact_BUCKET_NAME }} 
+      #       signing-profile-name: ${{ secrets.SERVICE_CATALOG_SIGNING_PROFILE_NAME }}
+      #       working-directory: ./cloudformation
+      #       template-file: centralised-logging.yaml
