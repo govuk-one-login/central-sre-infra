@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Template to deploy the centralised loggin but service catalog product
+Description: Template to deploy the centralised logging but service catalog product
 
 Parameters:
 
@@ -9,15 +9,16 @@ Parameters:
     Default: dev
 
 Resources:
-  CentralisedLogginBucket:
+  CentralisedLoggingBucket:
     Type: 'AWS::ServiceCatalog::CloudFormationProvisionedProduct'
     Properties: 
+      ProvisionedProductName: sccpp-central-logging-bucket #TODO documentation on prefixing the ProvisionedProductName with sccpp- so that the securepipeline deployment roles can deploy
       ProductId: prod-uqstrdr2u5xoc
       ProvisioningArtifactId: pa-77ozkpacjvmwe
       PathName: Storage
       ProvisioningParameters:
         - Key: S3BucketName
-          Value: !Sub '{AWS::AccountId}-centralised-logging-bucket'
+          Value: !Sub '${AWS::AccountId}-centralised-logging-bucket'
         - Key: DeletionPolicy
           Value: Delete
         - Key: UpdateReplacePolicy
