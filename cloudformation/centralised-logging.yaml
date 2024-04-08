@@ -12,7 +12,7 @@ Resources:
   CentralisedLoggingBucket:
     Type: 'AWS::ServiceCatalog::CloudFormationProvisionedProduct'
     Properties: 
-      ProvisionedProductName: sccpp-central-logging-bucket #TODO documentation on prefixing the ProvisionedProductName with sccpp- so that the securepipeline deployment roles can deploy
+      ProvisionedProductName: central-logging-bucket
       ProductId: prod-uqstrdr2u5xoc
       ProvisioningArtifactId: pa-77ozkpacjvmwe
       PathName: Storage

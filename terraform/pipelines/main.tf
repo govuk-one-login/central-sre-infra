@@ -1,6 +1,7 @@
 module "centralised-logging" {
   source     = "git@github.com:govuk-one-login/ipv-terraform-modules//secure-pipeline/deploy-pipeline"
   template_url = "https://template-storage-templatebucket-1upzyw6v9cs42.s3.eu-west-2.amazonaws.com/sam-deploy-pipeline/template.yaml"
+  #template_url = "https://template-bucket-templatebucket-35qbug5k1irh.s3.eu-west-2.amazonaws.com/test-templates/sam-deploy-pipeline/f/SW-226-template.yaml"
   stack_name = "centralised-logging-pipeline"
   parameters = {
     SAMStackName               = "centralised-logging"
