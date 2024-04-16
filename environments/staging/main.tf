@@ -32,6 +32,8 @@ module "pipelines" {
     include_promotion = "Yes"
     signing_profile_arn = "arn:aws:signer:eu-west-2:891376909120:/signing-profiles/SigningProfile_WOWPkr83gjpe"
     signing_profile_version_arn = "arn:aws:signer:eu-west-2:891376909120:/signing-profiles/SigningProfile_WOWPkr83gjpe/VYpUeFWxU1"
-    artifact_source_bucket_arn = "arn:aws:s3:::centralised-logging-pipeli-artifactpromotionbucket-onqq1idmpmqy"
-    artifact_source_bucket_event_trigger_role_arn = "arn:aws:iam::891376909120:role/PL-centralised-logging-pipeline-PromoTrigRole-06b0771b5f2d"
+    centralised_logging_artifact_source_bucket_arn = "arn:aws:s3:::centralised-logging-pipeli-artifactpromotionbucket-onqq1idmpmqy"
+    centralised_logging_artifact_source_bucket_event_trigger_role_arn = "arn:aws:iam::891376909120:role/PL-centralised-logging-pipeline-PromoTrigRole-06b0771b5f2d"
+    conformance_artifact_source_bucket_arn = "arn:aws:s3:::devplatform-conformance-pi-artifactpromotionbucket-rx6twvoskovi"
+    conformance_artifact_source_bucket_event_trigger_role_arn = "arn:aws:iam::891376909120:role/PL-devplatform-conformance-pipeline-PromoTrigRole-0ab7c5b04e2f"
 }
