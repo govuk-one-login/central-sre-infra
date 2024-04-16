@@ -12,6 +12,11 @@ Parameters:
     Default: dev-platform-conformance
     Description: "Tag all your resources with the service name."
 
+  Owner:
+    Type: String
+    Default: Central SRE
+    Description: "Tag all your resources with the owner name."
+
   Environment:
     Type: String
     Default: dev
