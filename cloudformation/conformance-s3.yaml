@@ -123,3 +123,42 @@ Resources:
           Value: !Ref Owner
         - Key: Source
           Value: "govuk-one-login/central-sre-infra/cloudformation/conformance-s3.yaml"
+
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: AllowSSLRequestsOnly
+            Action: s3:*
+            Effect: Deny
+            Principal: "*"
+            Resource: !Sub "arn:aws:s3:::devplatform-conformance-${AWS::AccountId}/*"
+            Condition:
+              Bool:
+                aws:SecureTransport: false
+          - Sid: EnforceTLSv12orHigher
+            Action: s3:*
+            Effect: Deny
+            Principal: "*"
+            Resource: !Sub "arn:aws:s3:::devplatform-conformance-${AWS::AccountId}/*"
+            Condition:
+              NumericLessThan:
+                s3:TlsVersion: 1.2
+          - Action:
+              - "s3:PutObject"
+            Effect: Allow
+            Principal:
+              AWS: arn:aws:iam::892537467220:root
+            Resource: !Sub "arn:aws:s3:::devplatform-conformance-${AWS::AccountId}/*"
+          - Action:
+              - "s3:GetObject"
+            Effect: Allow
+            Principal:
+              "AWS": "*"
+            Resource: !Sub "arn:aws:s3:::devplatform-conformance-${AWS::AccountId}/*"
+            Condition:
+              StringEquals:
+                "aws:PrincipalOrgID": ["o-dpp53lco28"]
