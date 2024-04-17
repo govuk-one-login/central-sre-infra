@@ -58,6 +58,26 @@ Resources:
               - "kms:TagResource"
               - "kms:UntagResource"              
             Resource: "*"
+          - Sid: Allow write with key
+            Effect: Allow
+            Principal:
+              AWS: 
+                - !Sub "arn:aws:iam::${AWS::AccountId}:root"
+                - arn:aws:iam::892537467220:root
+            Action:
+              - "kms:Encrypt"
+              - "kms:GenerateDataKey"
+            Resource: "*"
+          - Sid: Allow read with key
+            Effect: Allow
+            Principal:
+              AWS: "*"
+            Action:
+              - "kms:Decrypt"
+            Resource: "*"
+            Condition:
+              StringEquals:
+                "aws:PrincipalOrgID": ["o-dpp53lco28"]
       Tags:
         - Key: StackName
           Value: !Sub "${AWS::StackName}"
