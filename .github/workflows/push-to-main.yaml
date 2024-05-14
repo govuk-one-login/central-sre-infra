@@ -30,8 +30,8 @@ jobs:
       - name: Set up SAM cli
         uses: aws-actions/setup-sam@v2
       
-      - name: Deploy via the workflow.
-        uses: govuk-one-login/devplatform-upload-action@v3.5
+      - name: Deploy via the workflow
+        uses: govuk-one-login/devplatform-upload-action@v3.8.1
         with:
             artifact-bucket-name: ${{ secrets.SCAT_CENTRALISED_LOGGING_ARTIFACT_BUCKET_NAME }} 
             signing-profile-name: ${{ secrets.SCAT_CENTRALISED_LOGGING_SIGNING_PROFILE_NAME }}
